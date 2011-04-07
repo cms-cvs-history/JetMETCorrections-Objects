@@ -52,8 +52,11 @@ class JetCorrector
   
   /// if correction needs event information
   virtual bool eventRequired () const = 0;
+
+  /// if correction needs the jet reference
+  virtual bool refRequired () const = 0;
   
-  /// if correction needs event information
+  /// if vectorial correction is provided
   inline virtual bool vectorialCorrection () const;
 
   /// retrieve corrector from the event setup. troughs exception if something is missing

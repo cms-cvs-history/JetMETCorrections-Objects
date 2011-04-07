@@ -47,7 +47,7 @@ double ChainedJetCorrector::correction (const reco::Jet& fJet,
   }
   return result;
 }
-
+/// apply correction using all event information and reference to the raw jet
 double ChainedJetCorrector::correction (const reco::Jet& fJet,
 					const edm::RefToBase<reco::Jet>& fJetRef,
 					const edm::Event& fEvent,
@@ -71,3 +71,14 @@ bool ChainedJetCorrector::eventRequired () const
   }
   return false;
 }
+
+/// if correction needs jet reference
+bool ChainedJetCorrector::refRequired () const
+{
+  for (size_t i = 0; i < mCorrectors.size (); ++i) {
+    if (mCorrectors[i]->refRequired ()) return true;
+  }
+  return false;
+}
+
+

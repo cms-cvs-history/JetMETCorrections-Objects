@@ -30,6 +30,7 @@ public:
 			     const edm::EventSetup& fSetup) const;
   
   virtual bool eventRequired () const;
+  virtual bool refRequired () const;
   
   void push_back (const JetCorrector* fCorrector) {mCorrectors.push_back (fCorrector);}
   void clear () {mCorrectors.clear ();}

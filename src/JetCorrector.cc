@@ -15,7 +15,7 @@
 double JetCorrector::correction (const reco::Jet& fJet,
 				 const edm::Event& fEvent,
 				 const edm::EventSetup& fSetup) const {
-  if (eventRequired ()) {
+  if (eventRequired () && !refRequired()) {
     edm::LogError ("Missing Jet Correction Method") 
       << "Undefined Jet Correction method requiring event data is called" << std::endl;
     return 0;
@@ -27,9 +27,9 @@ double JetCorrector::correction (const reco::Jet& fJet,
 				 const edm::RefToBase<reco::Jet>& fJetRef,
 				 const edm::Event& fEvent,
 				 const edm::EventSetup& fSetup) const {
-  if (eventRequired ()) {
+  if (eventRequired () && refRequired()) {
     edm::LogError ("Missing Jet Correction Method") 
-      << "Undefined Jet Correction method requiring event data is called" << std::endl;
+      << "Undefined Jet Correction method requiring event data and jet reference is called" << std::endl;
     return 0;
   }
   return correction (fJet);
